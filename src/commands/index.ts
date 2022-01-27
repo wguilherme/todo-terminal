@@ -23,13 +23,19 @@ const mockList = [
 
 // const todoList: any = conf.get('todo-list')
 const todoList: any = mockList
-export default function list() {
-  if (todoList && todoList.length) {
-    console.log(`Você tem ${todoList.length} tarefas:`)
 
-    todoList.map((item: any) => console.log(`${item.name} - Projeto: ${item.project}`))
-  } else {
-    // user does not have tasks in todoList
-    console.log('Nenhuma tarefa em aberto')
-  }
+const taskActions = {
+
+  list() {
+    if (todoList && todoList.length) {
+      console.log(`Você tem ${todoList.length} tarefas:`)
+
+      todoList.map((item: any) => console.log(`${item.name} - Projeto: ${item.project}`))
+    } else {
+      // user does not have tasks in todoList
+      console.log('Nenhuma tarefa em aberto')
+    }
+  },
 }
+
+export default taskActions

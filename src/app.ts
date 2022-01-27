@@ -1,11 +1,11 @@
 import { Command } from 'commander'
-import list from './commands/list'
+import task from './commands'
 
 const program = new Command()
 
 program
   .command('list')
   .description('List all the TODO tasks')
-  .action(list)
+  .action(task.list)
 
 program.parse()
