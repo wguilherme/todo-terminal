@@ -9,8 +9,8 @@ program
   .action(task.list)
 
 program
-  .command('add <name>')
+  .command('add <name> <description> <project>')
   .description('Create a task')
-  .action((name) => task.create(name))
+  .action((name, description, project) => task.create(name, description, project))
 
 program.parse()

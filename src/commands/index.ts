@@ -8,14 +8,16 @@ const taskActions = {
   async list() {
     try {
       const { data: tasks } = await api.get('/task')
-      if (tasks.length > 0) {
-        tasks.map((task: any) => console.log(`${task.name}, ${task.description || 'sem descrição'} - Projeto: ${task.project}`))
+      // console.log(tasks)
+      if (tasks?.length > 0) {
+        tasks.map((task: any) => console.log(`${task.name}, ${task.description || 'sem descrição'} - Projeto: ${task.project || 'sem projeto'}`))
       } else console.log('Nenhuma tarefa disponível')
     } catch (error) { console.log('Ocorreu um erro', error?.message) }
   },
-  async create(name) {
+  async create(name, description, project) {
     try {
-      console.log(name)
+      const post = await api.post('/task', { name, description, project })
+      console.log(`Tarefa adicionada com ID ${post?.data?._id}`)
     } catch (error) { console.log('Ocorreu um erro', error?.message) }
   },
 }
