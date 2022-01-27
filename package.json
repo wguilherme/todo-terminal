@@ -20,6 +20,7 @@
     "dev-test": "jest --runInBand --watch"
   },
   "dependencies": {
+    "axios": "^0.25.0",
     "chalk": "^5.0.0",
     "commander": "^8.3.0",
     "conf": "^10.1.1",

@@ -1,5 +1,6 @@
 // import chalk from 'chalk'
 import Conf from 'conf'
+import api from '../services/api'
 
 const conf = new Conf()
 
@@ -26,15 +27,13 @@ const todoList: any = mockList
 
 const taskActions = {
 
-  list() {
-    if (todoList && todoList.length) {
-      console.log(`Você tem ${todoList.length} tarefas:`)
-
-      todoList.map((item: any) => console.log(`${item.name} - Projeto: ${item.project}`))
-    } else {
-      // user does not have tasks in todoList
-      console.log('Nenhuma tarefa em aberto')
-    }
+  async list() {
+    try {
+      const { data: tasks } = await api.get('/task')
+      if (tasks.length > 0) {
+        tasks.map((task: any) => console.log(`${task.name}, ${task.description || 'sem descrição'} - Projeto: ${task.project}`))
+      }
+    } catch (error) { console.log('Ocorreu um erro', error?.message) }
   },
 }
 
